@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DownloadManagerDemo">
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/partialLeftDownloadManager"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:layout_constraintGuide_percent="0.1"
+        android:orientation="vertical"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/partialRightDownloadManager"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        app:layout_constraintGuide_percent="0.9"
+        android:orientation="vertical"/>
+
+    <TextView
+        android:id="@+id/DownloadManagerTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DownloadManager"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"/>
+    <EditText
+        android:id="@+id/DownloadLinkInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/DownloadManagerTitle"
+        app:layout_constraintLeft_toRightOf="@id/partialLeftDownloadManager"
+        app:layout_constraintRight_toLeftOf="@id/partialRightDownloadManager"
+        android:layout_marginTop="20dp"
+        android:hint="url"
+        android:gravity="center"/>
+    <Button
+        android:id="@+id/DownloadButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Download"
+        app:layout_constraintTop_toBottomOf="@id/DownloadLinkInput"
+        app:layout_constraintRight_toLeftOf="@id/partialRightDownloadManager"
+        app:layout_constraintLeft_toRightOf="@id/partialLeftDownloadManager"
+        android:layout_marginTop="10dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
