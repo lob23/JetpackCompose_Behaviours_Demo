@@ -9,6 +9,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         // startActivity(Intent(this, DownloadManagerDemo::class.java))
-        startActivity(Intent(this, Notification_screen::class.java))
+        // startActivity(Intent(this, Notification_screen::class.java))
+        startActivity(Intent(this, PermissionScreen::class.java))
     }
 }
