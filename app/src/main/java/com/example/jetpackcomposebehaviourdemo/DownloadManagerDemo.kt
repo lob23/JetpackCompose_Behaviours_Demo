@@ -1,16 +1,22 @@
-package com.example.jetpackcomposebehaviourdemo
+package com.example.jetpackcomposebehaviourdemo.DownloadManagerPack
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.jetpackcomposebehaviourdemo.Downloader
+import com.example.jetpackcomposebehaviourdemo.Media_Playback_Demo.MediaDemo
+import com.example.jetpackcomposebehaviourdemo.Media_Playback_Demo.MediaPlaybackDemo
+import com.example.jetpackcomposebehaviourdemo.R
 
 class DownloadManagerDemo : AppCompatActivity() {
     private lateinit var downloader: Downloader;
     private lateinit var urlGetter: EditText;
     private lateinit var downloadButt: Button;
+    private lateinit var nextButt: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +24,9 @@ class DownloadManagerDemo : AppCompatActivity() {
         downloader = Downloader(this);
         urlGetter = findViewById(R.id.DownloadLinkInput);
         downloadButt = findViewById(R.id.DownloadButton);
+        nextButt = findViewById(R.id.DownloadToMediaButton);
+
+
         downloadButt.setOnClickListener(object: View.OnClickListener{
             override fun onClick(view: View?) {
                 val str = urlGetter.text.toString();
@@ -28,6 +37,11 @@ class DownloadManagerDemo : AppCompatActivity() {
                 else{
                     Toast.makeText(this@DownloadManagerDemo, "Input a link", Toast.LENGTH_SHORT).show();
                 }
+            }
+        })
+        nextButt.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(view: View?) {
+                startActivity(Intent(this@DownloadManagerDemo, MediaDemo::class.java))
             }
         })
     }
