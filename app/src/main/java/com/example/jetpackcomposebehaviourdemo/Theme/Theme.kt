@@ -5,6 +5,9 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
+import com.example.jetpackcomposebehaviourdemo.ui.theme.BackgroundColor
+import com.example.jetpackcomposebehaviourdemo.ui.theme.ButtonColor
 
 private val DarkColorPalette = darkColors(
     primary = Purple200,
@@ -13,9 +16,13 @@ private val DarkColorPalette = darkColors(
 )
 
 private val LightColorPalette = lightColors(
-    primary = Purple500,
-    primaryVariant = Purple700,
-    secondary = Teal200
+    primary = ButtonColor,
+    primaryVariant = ButtonColor,
+    secondary = Purple200,
+    background = BackgroundColor,
+    onBackground = BackgroundColor,
+    onPrimary = Color.White,
+    onSecondary = Color.White,
 
     /* Other default colors to override
     background = Color.White,

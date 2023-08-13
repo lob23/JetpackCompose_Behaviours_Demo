@@ -10,15 +10,23 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
+import androidx.compose.material.Icon
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.jetpackcomposebehaviourdemo.Download_Manager_Demo.DownloadManagerDemo
 import com.example.jetpackcomposebehaviourdemo.Notification_Demo.Notification_screen
+import com.example.jetpackcomposebehaviourdemo.R
+import com.example.jetpackcomposebehaviourdemo.ui.theme.BackgroundColor
+import com.example.jetpackcomposebehaviourdemo.ui.theme.ButtonColor
 import com.example.jetpackcomposebehaviourdemo.ui.theme.NotificationPermissionsTheme
 
 class PermissionScreen : ComponentActivity() {
@@ -67,31 +75,70 @@ class PermissionScreen : ComponentActivity() {
                 )
 
                 // This column contains two buttons: one to request a single permission and one to request multiple permissions.
-                Column(
+                Surface(
                     modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    color = BackgroundColor,
                 ) {
-                    // This button requests the camera permission from the user.
-                    Button(onClick = {
-                        cameraPermissionResultLauncher.launch(
-                            Manifest.permission.CAMERA
-                        )
-                    }) {
-                        Text(text = "Request one permission")
-                    }
-                    Spacer(modifier = Modifier.height(16.dp))
-                    // This button requests the record audio and call phone permissions from the user.
-                    Button(onClick = {
-                        multiplePermissionResultLauncher.launch(permissionsToRequest)
-                    }) {
-                        Text(text = "Request multiple permission")
-                    }
-                    // This button requests the record audio and call phone permissions from the user.
-                    Button(onClick = {
-                        startActivity(Intent(this@PermissionScreen, DownloadManagerDemo::class.java))
-                    }) {
-                        Text(text = "Notification demo")
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        // This button requests the camera permission from the user.
+                        Button(onClick = {
+                            cameraPermissionResultLauncher.launch(
+                                Manifest.permission.CAMERA
+                            )
+                        }, modifier = Modifier
+                            .background(ButtonColor, shape = RoundedCornerShape(16.dp))) {
+                            Row{
+                                Icon(
+                                    painter = painterResource(id = R.drawable.baseline_question_mark_24),
+                                    contentDescription = "Camera Icon",
+                                    modifier = Modifier.padding(end = 4.dp)
+                                )
+                                Text(
+                                    text = "Request one permission",
+                                    modifier = Modifier.padding(start = 4.dp)
+                                )
+                            }
+                        }
+                        Spacer(modifier = Modifier.height(16.dp))
+                        // This button requests the record audio and call phone permissions from the user.
+                        Button(onClick = {
+                            multiplePermissionResultLauncher.launch(permissionsToRequest)
+                        }, modifier = Modifier
+                            .background(ButtonColor, shape = RoundedCornerShape(16.dp))) {
+                            Row{
+                                Icon(
+                                    painter = painterResource(id = R.drawable.baseline_question_mark_24),
+                                    contentDescription = "Camera Icon",
+                                    modifier = Modifier.padding(end = 4.dp)
+                                )
+                                Text(
+                                    text = "Request multiple permissions",
+                                    modifier = Modifier.padding(start = 4.dp)
+                                )
+                            }
+                        }
+                        Spacer(modifier = Modifier.height(16.dp))
+                        // This button requests the record audio and call phone permissions from the user.
+                        Button(onClick = {
+                            startActivity(Intent(this@PermissionScreen, DownloadManagerDemo::class.java))
+                        }, modifier = Modifier
+                            .background(ButtonColor, shape = RoundedCornerShape(16.dp))) {
+                            Row{
+                                Icon(
+                                    painter = painterResource(id = R.drawable.baseline_arrow_right_alt_24),
+                                    contentDescription = "Notification Icon",
+                                    modifier = Modifier.padding(end = 4.dp)
+                                )
+                                Text(
+                                    text = "Download Manager Demo",
+                                    modifier = Modifier.padding(start = 4.dp)
+                                )
+                            }
+                        }
                     }
                 }
 

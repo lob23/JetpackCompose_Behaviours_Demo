@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DownloadManagerDemo">
+    tools:context=".DownloadManagerDemo"
+    android:background="#EBE0CB">
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/partialLeftDownloadManager"
         android:layout_width="wrap_content"
@@ -22,11 +23,14 @@
         android:id="@+id/DownloadManagerTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DownloadManager"
+        android:text="Download Manager"
+        android:textSize="30dp"
+        android:textColor="#5F3822"
+        android:fontFamily="@font/roboto_medium"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:textStyle="bold"/>
     <EditText
         android:id="@+id/DownloadLinkInput"
@@ -36,22 +40,33 @@
         app:layout_constraintLeft_toRightOf="@id/partialLeftDownloadManager"
         app:layout_constraintRight_toLeftOf="@id/partialRightDownloadManager"
         android:layout_marginTop="20dp"
-        android:hint="url"
+        android:hint="Enter a URL"
         android:gravity="center"/>
-    <Button
+
+    <TextView
         android:id="@+id/DownloadButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button"
+        android:fontFamily="@font/roboto_medium"
         android:text="Download"
-        app:layout_constraintTop_toBottomOf="@id/DownloadLinkInput"
-        app:layout_constraintRight_toLeftOf="@id/partialRightDownloadManager"
+        android:textColor="@color/white"
+        android:padding="12dp"
+        android:drawableLeft="@drawable/baseline_download_24"
         app:layout_constraintLeft_toRightOf="@id/partialLeftDownloadManager"
-        android:layout_marginTop="10dp"/>
-    <Button
+        app:layout_constraintRight_toLeftOf="@id/partialRightDownloadManager"
+        app:layout_constraintTop_toBottomOf="@id/DownloadLinkInput" />
+    <TextView
         android:id="@+id/DownloadToMediaButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/button"
+        android:fontFamily="@font/roboto_medium"
         android:text="Media Demo"
+        android:textColor="@color/white"
+        android:padding="12dp"
+        android:drawableLeft="@drawable/baseline_arrow_right_alt_24"
         app:layout_constraintTop_toBottomOf="@id/DownloadButton"
         app:layout_constraintRight_toLeftOf="@id/partialRightDownloadManager"
         app:layout_constraintLeft_toRightOf="@id/partialLeftDownloadManager"

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.example.jetpackcomposebehaviourdemo.Media_Playback_Demo.MediaDemo
 import com.example.jetpackcomposebehaviourdemo.R
@@ -13,8 +14,8 @@ import com.example.jetpackcomposebehaviourdemo.R
 class DownloadManagerDemo : AppCompatActivity() {
     private lateinit var downloader: Downloader;
     private lateinit var urlGetter: EditText;
-    private lateinit var downloadButt: Button;
-    private lateinit var nextButt: Button
+    private lateinit var downloadButt: TextView;
+    private lateinit var nextButt: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

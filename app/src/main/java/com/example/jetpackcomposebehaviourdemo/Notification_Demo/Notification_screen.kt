@@ -5,6 +5,7 @@ import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
@@ -12,21 +13,35 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
+import androidx.compose.material.Icon
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.example.jetpackcomposebehaviourdemo.Download_Manager_Demo.DownloadManagerDemo
 import com.example.jetpackcomposebehaviourdemo.Media_Playback_Demo.MediaDemo
 import com.example.jetpackcomposebehaviourdemo.Permission_Demo.PermissionScreen
 import com.example.jetpackcomposebehaviourdemo.R
+import com.example.jetpackcomposebehaviourdemo.ui.theme.BackgroundColor
+import com.example.jetpackcomposebehaviourdemo.ui.theme.ButtonColor
 import com.example.jetpackcomposebehaviourdemo.ui.theme.NotificationPermissionsTheme
 
 
@@ -55,40 +70,84 @@ class Notification_screen : ComponentActivity() {
                     }
                 }
 
-                // This code creates a column with two buttons.
-                Column(
+                Surface(
                     modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    // This button requests the notification permission.
-                    val launcher = rememberLauncherForActivityResult(
-                        contract = ActivityResultContracts.RequestPermission(),
-                        onResult = { isGranted ->
-                            hasNotificationPermission = isGranted
-                        }
-                    )
-                    Button(onClick = {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                            launcher.launch(Manifest.permission.POST_NOTIFICATIONS)
-                        }
-                    }) {
-                        Text(text = "Request permission")
-                    }
+                    color = BackgroundColor,
+                ){
+                    // This code creates a column with two buttons.
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                       verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally,
 
-                    // This button shows a notification if the notification permission is granted.
-                    Button(onClick = {
-                        if(hasNotificationPermission) {
-                            Toast.makeText(this@Notification_screen, "true", Toast.LENGTH_SHORT ).show()
-                            showNotification()
+                    ) {
+                        // This button requests the notification permission.
+                        val launcher = rememberLauncherForActivityResult(
+                            contract = ActivityResultContracts.RequestPermission(),
+                            onResult = { isGranted ->
+                                hasNotificationPermission = isGranted
+                            }
+                        )
+                        Button(onClick = {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                                launcher.launch(Manifest.permission.POST_NOTIFICATIONS)
+                            }
+                        }, modifier = Modifier
+                            .background(ButtonColor, shape = RoundedCornerShape(16.dp))) {
+                            Row{
+                                Icon(
+                                    painter = painterResource(id = R.drawable.baseline_question_mark_24),
+                                    contentDescription = "Camera Icon",
+                                    modifier = Modifier.padding(end = 4.dp)
+                                )
+                                Text(
+                                    text = "Request Notification permission",
+                                    modifier = Modifier.padding(start = 4.dp)
+                                )
+                            }
                         }
-                    }) {
-                        Text(text = "Show notification")
-                    }
-                    Button(onClick = {
-                        startActivity(Intent(this@Notification_screen, PermissionScreen::class.java))
-                    }){
-                        Text(text = "Permission Demo")
+
+                        Spacer(modifier = Modifier.height(16.dp))
+                        // This button shows a notification if the notification permission is granted.
+                        Button(onClick = {
+                            if(hasNotificationPermission) {
+                               // Toast.makeText(this@Notification_screen, "true", Toast.LENGTH_SHORT ).show()
+                                showNotification()
+                            }
+                        }, modifier = Modifier
+                            .background(ButtonColor, shape = RoundedCornerShape(16.dp))) {
+                            Row{
+                                Icon(
+                                    painter = painterResource(id = R.drawable.baseline_notifications_24),
+                                    contentDescription = "Notification Icon",
+                                    modifier = Modifier.padding(end = 4.dp)
+                                )
+                                Text(
+                                    text = "Show notification",
+                                    modifier = Modifier.padding(start = 4.dp)
+                                )
+                             }
+
+                        }
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        Button(onClick = {
+                            startActivity(Intent(this@Notification_screen, PermissionScreen::class.java))
+                        }, modifier = Modifier
+                            .background(ButtonColor, shape = RoundedCornerShape(16.dp))){
+                            Row{
+                                Icon(
+                                    painter = painterResource(id = R.drawable.baseline_arrow_right_alt_24),
+                                    contentDescription = "Arrow Icon",
+                                    modifier = Modifier.padding(end = 4.dp)
+                                )
+                                Text(
+                                    text = "Permissions Demo",
+                                    modifier = Modifier.padding(start = 4.dp)
+                                )
+                            }
+                        }
                     }
                 }
             }
@@ -111,7 +170,7 @@ class Notification_screen : ComponentActivity() {
         if (channel != null) {
             Toast.makeText(this@Notification_screen, "Ok", Toast.LENGTH_SHORT ).show()
         } else {
-            Toast.makeText(this@Notification_screen, "Diu ok", Toast.LENGTH_SHORT ).show()
+            Toast.makeText(this@Notification_screen, "Not ok", Toast.LENGTH_SHORT ).show()
         }
         // Notify the user with the notification.
         notificationManager.notify(1, notification)
