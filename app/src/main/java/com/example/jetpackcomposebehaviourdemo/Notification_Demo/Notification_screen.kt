@@ -78,7 +78,6 @@ class Notification_screen : ComponentActivity() {
 
                     // This button shows a notification if the notification permission is granted.
                     Button(onClick = {
-                        Toast.makeText(this@Notification_screen, "false", Toast.LENGTH_SHORT ).show()
                         if(hasNotificationPermission) {
                             Toast.makeText(this@Notification_screen, "true", Toast.LENGTH_SHORT ).show()
                             showNotification()
@@ -98,8 +97,9 @@ class Notification_screen : ComponentActivity() {
 
     // This code shows a notification.
     private fun showNotification() {
+
         // Create a notification.
-        val notification = NotificationCompat.Builder(applicationContext, "channel_id")
+        val notification = NotificationCompat.Builder(applicationContext, "channel_ID")
             .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle("Hello world")
             .setContentText("This is a description")
@@ -107,7 +107,12 @@ class Notification_screen : ComponentActivity() {
 
         // Get the notification manager.
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
+        val channel = notificationManager.getNotificationChannel("channel_ID")
+        if (channel != null) {
+            Toast.makeText(this@Notification_screen, "Ok", Toast.LENGTH_SHORT ).show()
+        } else {
+            Toast.makeText(this@Notification_screen, "Diu ok", Toast.LENGTH_SHORT ).show()
+        }
         // Notify the user with the notification.
         notificationManager.notify(1, notification)
     }

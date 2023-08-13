@@ -1,7 +1,8 @@
 package com.example.jetpackcomposebehaviourdemo.Media_Playback_Demo
 
 import android.app.Application
+import com.example.jetpackcomposebehaviourdemo.Notification_Demo.NotificationApplication
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class MediaApp:Application()
+class MediaApp: NotificationApplication()
